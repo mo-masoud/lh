@@ -18,15 +18,8 @@ export default function Home() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-          >
-            Sign In
-          </Button>
-          <Button className="bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-            Sign Up
-          </Button>
+          <Button variant="gradient-outline">Sign In</Button>
+          <Button variant="gradient">Sign Up</Button>
         </div>
       </header>
 
@@ -37,7 +30,7 @@ export default function Home() {
           <div className="flex justify-center mb-8">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full blur-xl opacity-30 animate-pulse"></div>
-              <div className="relative flex items-center justify-center w-20 h-20 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full shadow-2xl animate-bounce">
+              <div className="relative flex items-center justify-center w-20 h-20 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full shadow-2xl animate-fade-in">
                 <Sparkles className="w-10 h-10 text-white" />
               </div>
             </div>
@@ -45,7 +38,7 @@ export default function Home() {
 
           {/* Main Heading with Animation */}
           <div className="space-y-4">
-            <h2 className="text-5xl md:text-7xl font-bold leading-tight md:leading-tight bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent animate-fade-in">
+            <h2 className="text-5xl md:text-7xl font-bold leading-tight md:leading-24 bg-gradient-to-r from-violet-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent animate-fade-in">
               Coming Soon
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 animate-fade-in-delay-1">
@@ -63,18 +56,11 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
+              <Button size="lg" variant="gradient" className="group">
                 Get Early Access
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-violet-200 text-violet-600 hover:bg-violet-50 dark:border-violet-700 dark:text-violet-400 dark:hover:bg-violet-950"
-              >
+              <Button variant="gradient-outline" size="lg">
                 Learn More
               </Button>
             </div>
