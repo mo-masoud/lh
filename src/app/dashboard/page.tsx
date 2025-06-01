@@ -1,25 +1,16 @@
-import {
-  FeatureCard,
-  StatsCard,
-  QuickActionCard,
-} from "@/components/shared/cards";
+import { StatsCard } from "@/components/shared/cards";
 import { NavigationBreadcrumb } from "@/components/shared/navigation";
 import { WelcomeHeader } from "@/components/feature-specific/dashboard";
 import {
   Shield,
-  PiggyBank,
   Lock,
   TrendingUp,
   Wallet,
-  Eye,
   BarChart3,
   ArrowUpRight,
-  Target,
   Home,
   AlertTriangle,
   Calendar,
-  DollarSign,
-  Settings,
   CreditCard,
   TrendingDown,
 } from "lucide-react";
@@ -188,154 +179,6 @@ export default function DashboardPage() {
             icon={<TrendingDown className="h-5 w-5" />}
             className="animate-in slide-in-from-right-4 duration-300 delay-450 hover:scale-105 transition-transform"
           />
-        </div>
-      </section>
-
-      {/* Main Modules Section - Extensible Design */}
-      <section className="space-y-8">
-        <div className="animate-in fade-in-0 slide-in-from-left-4 duration-300 delay-475">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              LifeHub Modules
-            </h2>
-            <p className="text-muted-foreground mt-1">
-              Manage every aspect of your digital life
-            </p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-          {/* Password Manager Module */}
-          <div className="animate-in slide-in-from-left-8 duration-300 delay-500">
-            <FeatureCard
-              title="Password Manager"
-              description="Secure password storage with support for normal passwords and SSH credentials. Auto-expiry tracking and security audits included."
-              icon={<Shield className="h-6 w-6" />}
-              className="bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200/50 dark:border-blue-800/50 h-full"
-            />
-          </div>
-
-          {/* Savings Tracker Module */}
-          <div className="animate-in slide-in-from-bottom-8 duration-300 delay-525">
-            <FeatureCard
-              title="Savings Tracker"
-              description="Multi-currency portfolio tracking with automatic conversion rates. Set goals, track progress, and manage recurring transactions."
-              icon={<PiggyBank className="h-6 w-6" />}
-              className="bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200/50 dark:border-emerald-800/50 h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Quick Actions */}
-      <section className="space-y-6">
-        <div className="animate-in fade-in-0 slide-in-from-left-4 duration-300 delay-575">
-          <h3 className="text-xl font-semibold mb-2">Quick Actions</h3>
-          <p className="text-sm text-muted-foreground">
-            Common tasks and frequently used actions
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {/* Password Actions */}
-          <QuickActionCard
-            title="Add Password"
-            icon={<Lock className="h-5 w-5" />}
-            variant="password"
-            className="animate-in zoom-in-50 delay-100"
-          />
-          <QuickActionCard
-            title="View Passwords"
-            icon={<Eye className="h-5 w-5" />}
-            variant="view"
-            className="animate-in zoom-in-50 delay-120"
-          />
-
-          {/* Financial Actions */}
-          <QuickActionCard
-            title="Add Transaction"
-            icon={<DollarSign className="h-5 w-5" />}
-            variant="savings"
-            className="animate-in zoom-in-50 delay-140"
-          />
-          <QuickActionCard
-            title="Set Goal"
-            icon={<Target className="h-5 w-5" />}
-            variant="savings"
-            className="animate-in zoom-in-50 delay-160"
-          />
-
-          {/* General Actions */}
-          <QuickActionCard
-            title="View Reports"
-            icon={<BarChart3 className="h-5 w-5" />}
-            variant="report"
-            className="animate-in zoom-in-50 delay-180"
-          />
-          <QuickActionCard
-            title="Settings"
-            icon={<Settings className="h-5 w-5" />}
-            variant="view"
-            className="animate-in zoom-in-50 delay-200"
-          />
-        </div>
-      </section>
-
-      {/* Goals & Progress Tracking */}
-      <section className="space-y-6">
-        <div className="animate-in fade-in-0 slide-in-from-left-4 duration-300 delay-600">
-          <h3 className="text-xl font-semibold mb-2">Active Goals</h3>
-          <p className="text-sm text-muted-foreground">
-            Track your progress towards financial and security goals
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Financial Goal */}
-          <div className="rounded-xl border bg-card p-6 space-y-4 animate-in slide-in-from-left-4 duration-300 delay-625">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-gradient-to-r from-green-500 to-emerald-500 p-2">
-                  <Target className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="font-medium">Emergency Fund</p>
-                  <p className="text-sm text-muted-foreground">
-                    Target: $10,000
-                  </p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-green-600">100%</p>
-                <p className="text-sm text-muted-foreground">Complete!</p>
-              </div>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full w-full"></div>
-            </div>
-          </div>
-
-          {/* New Goal */}
-          <div className="rounded-xl border bg-card p-6 space-y-4 animate-in slide-in-from-right-4 duration-300 delay-650">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-2">
-                  <Target className="h-4 w-4 text-white" />
-                </div>
-                <div>
-                  <p className="font-medium">House Down Payment</p>
-                  <p className="text-sm text-muted-foreground">
-                    Target: $50,000
-                  </p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-blue-600">25%</p>
-                <p className="text-sm text-muted-foreground">$12,500</p>
-              </div>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full w-1/4"></div>
-            </div>
-          </div>
         </div>
       </section>
 

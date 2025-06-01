@@ -22,7 +22,6 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/layout/nav-main";
-import { NavProjects } from "@/components/layout/nav-projects";
 import { NavUser } from "@/components/layout/nav-user";
 import {
   Sidebar,
@@ -123,23 +122,6 @@ const data = {
       icon: Settings,
     },
   ],
-  projects: [
-    {
-      name: "Emergency Fund",
-      url: "/savings/goals/emergency",
-      icon: Frame,
-    },
-    {
-      name: "Vacation 2025",
-      url: "/savings/goals/vacation",
-      icon: PiggyBank,
-    },
-    {
-      name: "Home Down Payment",
-      url: "/savings/goals/home",
-      icon: Home,
-    },
-  ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -160,7 +142,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
