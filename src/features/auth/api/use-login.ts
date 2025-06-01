@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { InferRequestType, InferResponseType } from "hono";
+import { useMutation } from '@tanstack/react-query';
+import { InferRequestType, InferResponseType } from 'hono';
 
-import {client} from '@/lib/rpc'
+import { client } from '@/lib/rpc';
 
-type ResponseType = InferResponseType<typeof client.api.auth.login['$post']>;
-type RequestType = InferRequestType<typeof client.api.auth.login['$post']>;
+type ResponseType = InferResponseType<(typeof client.api.auth.login)['$post']>;
+type RequestType = InferRequestType<(typeof client.api.auth.login)['$post']>;
 
 export const useLogin = () => {
     return useMutation<ResponseType, Error, RequestType>({
@@ -13,7 +13,7 @@ export const useLogin = () => {
             return await response.json();
         },
         onError: (error) => {
-            console.error("Login failed:", error);
+            console.error('Login failed:', error);
         },
     });
 };

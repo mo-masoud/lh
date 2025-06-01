@@ -21,20 +21,23 @@ export const useAuthDialog = () => {
     }, [searchParams]);
 
     // Open a specific dialog
-    const openDialog = useCallback((type: AuthDialogType) => {
-        if (!type) {
-            // Remove dialog param if type is null
-            const params = new URLSearchParams(searchParams.toString());
-            params.delete('dialog');
-            const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
-            router.replace(newUrl);
-        } else {
-            // Add or update dialog param
-            const params = new URLSearchParams(searchParams.toString());
-            params.set('dialog', type);
-            router.replace(`?${params.toString()}`);
-        }
-    }, [router, searchParams]);
+    const openDialog = useCallback(
+        (type: AuthDialogType) => {
+            if (!type) {
+                // Remove dialog param if type is null
+                const params = new URLSearchParams(searchParams.toString());
+                params.delete('dialog');
+                const newUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+                router.replace(newUrl);
+            } else {
+                // Add or update dialog param
+                const params = new URLSearchParams(searchParams.toString());
+                params.set('dialog', type);
+                router.replace(`?${params.toString()}`);
+            }
+        },
+        [router, searchParams],
+    );
 
     // Close any open dialog
     const closeDialog = useCallback(() => {
@@ -42,9 +45,12 @@ export const useAuthDialog = () => {
     }, [openDialog]);
 
     // Check if a specific dialog is open
-    const isDialogOpen = useCallback((type: AuthDialogType) => {
-        return currentDialog === type;
-    }, [currentDialog]);
+    const isDialogOpen = useCallback(
+        (type: AuthDialogType) => {
+            return currentDialog === type;
+        },
+        [currentDialog],
+    );
 
     return {
         currentDialog,

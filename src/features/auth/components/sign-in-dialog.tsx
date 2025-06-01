@@ -81,7 +81,7 @@ export const SignInDialog: FC<SignInDialogProps> = ({ open, onOpenChange, onSign
                                             <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 type="email"
-                                                autoComplete='off'
+                                                autoComplete="off"
                                                 placeholder="Enter your email"
                                                 className="pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
@@ -105,7 +105,7 @@ export const SignInDialog: FC<SignInDialogProps> = ({ open, onOpenChange, onSign
                                             <Input
                                                 type={showPassword ? 'text' : 'password'}
                                                 placeholder="Enter your password"
-                                                autoComplete='off'
+                                                autoComplete="off"
                                                 className="pr-10 pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
                                             />
@@ -163,7 +163,7 @@ export const SignInDialog: FC<SignInDialogProps> = ({ open, onOpenChange, onSign
 
                 <div className="mt-6 text-center">
                     <p className="text-muted-foreground text-sm">
-                        Don't have an account?{' '}
+                        Don&apos;t have an account?{' '}
                         <Button variant="link" className="h-auto p-0 font-medium text-violet-600 hover:text-violet-700" onClick={onSignUpClick}>
                             Sign up
                         </Button>
