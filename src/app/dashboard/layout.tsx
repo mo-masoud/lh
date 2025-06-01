@@ -1,4 +1,4 @@
-import { DashboardHeader } from "@/components/dashboard";
+import { DashboardHeader } from "@/components/layout";
 
 export default function DashboardLayout({
   children,

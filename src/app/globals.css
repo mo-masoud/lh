@@ -41,6 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --animate-ring: ring 2s infinite ease-in-out;
 }
 
 :root {
@@ -136,6 +137,43 @@
   }
 }
 
+@keyframes ring {
+  0% {
+    transform: rotate(0deg) scale(1);
+    transform-origin: top center;
+  }
+  10% {
+    transform: rotate(-10deg) scale(1.05);
+  }
+  20% {
+    transform: rotate(10deg) scale(1.05);
+  }
+  30% {
+    transform: rotate(-8deg) scale(1.03);
+  }
+  40% {
+    transform: rotate(8deg) scale(1.03);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.02);
+  }
+  60% {
+    transform: rotate(5deg) scale(1.02);
+  }
+  70% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+  80% {
+    transform: rotate(2deg) scale(1.01);
+  }
+  90% {
+    transform: rotate(-1deg) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.8s ease-out forwards;
 }
@@ -153,4 +191,116 @@
 .animate-fade-in-delay-3 {
   animation: fade-in 0.8s ease-out 0.6s forwards;
   opacity: 0;
+}
+
+/* Modern Scrollbar Styles */
+/* WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0.01 286 / 0.3);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5 0.01 286 / 0.5);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: oklch(0.4 0.01 286 / 0.7);
+  background-clip: content-box;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-thumb {
+  background: oklch(0.4 0.01 286 / 0.4);
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.6 0.01 286 / 0.6);
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:active {
+  background: oklch(0.7 0.01 286 / 0.8);
+  background-clip: content-box;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.7 0.01 286 / 0.3) transparent;
+  scroll-behavior: smooth;
+}
+
+.dark * {
+  scrollbar-color: oklch(0.4 0.01 286 / 0.4) transparent;
+}
+
+/* Custom scrollbar for specific components */
+.scrollbar-modern {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.606 0.25 292.717 / 0.3) transparent;
+}
+
+.scrollbar-modern::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-modern::-webkit-scrollbar-button {
+  display: none;
+}
+
+.scrollbar-modern::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.scrollbar-modern::-webkit-scrollbar-thumb {
+  background: oklch(0.606 0.25 292.717 / 0.3);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.scrollbar-modern::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.606 0.25 292.717 / 0.5);
+}
+
+/* Gradient scrollbar for premium feel */
+.scrollbar-gradient::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    45deg,
+    oklch(0.606 0.25 292.717 / 0.4),
+    oklch(0.6 0.3 200 / 0.4)
+  );
+  border-radius: 8px;
+}
+
+.scrollbar-gradient::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    45deg,
+    oklch(0.606 0.25 292.717 / 0.6),
+    oklch(0.6 0.3 200 / 0.6)
+  );
 }
