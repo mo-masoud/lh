@@ -43,7 +43,6 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: Home,
-      isActive: true,
     },
     {
       title: "Password Manager",
@@ -126,13 +125,13 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" className="sidebar-gradient" {...props}>
+    <Sidebar collapsible="offcanvas" className="sidebar-gradient" {...props}>
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2 py-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-lg">
             <Heart className="w-5 h-5 text-white" fill="currentColor" />
           </div>
-          <div className="group-data-[collapsible=icon]:hidden">
+          <div className="group-data-">
             <h1 className="text-lg font-bold bg-gradient-to-r from-violet-600 to-cyan-600 bg-clip-text text-transparent">
               LifeHub
             </h1>
