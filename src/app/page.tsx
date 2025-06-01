@@ -1,24 +1,19 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
+import { HeaderAuthButtons } from '@/features/auth/components/header-auth-buttons';
+import { SignUpDialog } from '@/features/auth/components/sign-up-dialog';
 import { ArrowRight, Heart, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-cyan-50 dark:from-violet-950 dark:via-gray-900 dark:to-cyan-950">
             {/* Header */}
             <header className="flex items-center justify-between p-6 md:px-12">
-                <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-violet-600 to-cyan-600">
-                        <Heart className="h-5 w-5 text-white" fill="currentColor" />
-                    </div>
-                    <h1 className="bg-gradient-to-r from-violet-600 to-cyan-600 bg-clip-text text-2xl font-bold text-transparent">LifeHub</h1>
-                </div>
+                <Link href="/" className="bg-gradient-to-r from-violet-600 to-cyan-600 bg-clip-text text-2xl font-bold text-transparent">
+                    LifeHub
+                </Link>
 
-                <div className="flex items-center gap-3">
-                    <Button variant="gradient-outline">Sign In</Button>
-                    <Button variant="gradient">Sign Up</Button>
-                </div>
+                <HeaderAuthButtons />
             </header>
 
             {/* Main Content */}
@@ -50,10 +45,12 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <Button size="lg" variant="gradient" className="group">
-                                Get Early Access
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
+                            <SignUpDialog>
+                                <Button size="lg" variant="gradient" className="group">
+                                    Get Early Access
+                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                </Button>
+                            </SignUpDialog>
                             <Button variant="gradient-outline" size="lg">
                                 Learn More
                             </Button>
