@@ -1,10 +1,14 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { GetEarlyAccessButton } from '@/features/auth/components/get-early-access-button';
 import { HeaderAuthButtons } from '@/features/auth/components/header-auth-buttons';
-import { ArrowRight, Heart, Sparkles } from 'lucide-react';
+import { useAuthStatus } from '@/features/auth/hooks/use-auth-status';
+import { ArrowRight, Heart, LayoutDashboard, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
+    const { isAuthenticated, isLoading } = useAuthStatus();
     return (
         <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-cyan-50 dark:from-violet-950 dark:via-gray-900 dark:to-cyan-950">
             {/* Header */}
@@ -45,13 +49,26 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <GetEarlyAccessButton>
-                                Get Early Access
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </GetEarlyAccessButton>
-                            <Button variant="gradient-outline" size="lg">
-                                Learn More
-                            </Button>
+                            {!isLoading &&
+                                (isAuthenticated ? (
+                                    <Link href="/dashboard">
+                                        <Button variant="gradient" size="lg" className="group">
+                                            <LayoutDashboard className="mr-2 h-4 w-4" />
+                                            Go to Dashboard
+                                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                        </Button>
+                                    </Link>
+                                ) : (
+                                    <GetEarlyAccessButton>
+                                        Get Early Access
+                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </GetEarlyAccessButton>
+                                ))}
+                            {!isAuthenticated && !isLoading && (
+                                <Button variant="gradient-outline" size="lg">
+                                    Learn More
+                                </Button>
+                            )}
                         </div>
                     </div>
 

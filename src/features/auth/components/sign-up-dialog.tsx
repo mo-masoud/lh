@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -21,11 +22,11 @@ interface SignUpDialogProps {
 }
 
 export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSignInClick }) => {
-    const { mutate } = useSignUp();
+    const router = useRouter();
+    const { mutate, isPending } = useSignUp();
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
     const form = useForm<z.infer<typeof signUpSchema>>({
         resolver: zodResolver(signUpSchema),
@@ -38,13 +39,19 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSign
     });
 
     async function onSubmit(values: z.infer<typeof signUpSchema>) {
-        setIsLoading(true);
-
-        mutate(values);
-
-        setIsLoading(false);
-        onOpenChange(false);
-        form.reset();
+        mutate(values, {
+            onSuccess: (data) => {
+                console.log('Signup successful:', data);
+                onOpenChange(false);
+                form.reset();
+                // Redirect to dashboard
+                router.push('/dashboard');
+            },
+            onError: (error) => {
+                console.error('Signup failed:', error);
+                // Handle error (could show toast notification)
+            },
+        });
     }
 
     const handleClose = () => {
@@ -190,11 +197,11 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSign
                         />
 
                         <div className="flex gap-3 pt-4">
-                            <Button type="button" variant="outline" className="flex-1" onClick={handleClose} disabled={isLoading}>
+                            <Button type="button" variant="outline" className="flex-1" onClick={handleClose} disabled={isPending}>
                                 Cancel
                             </Button>
-                            <Button type="submit" variant="gradient" className="relative flex-1 overflow-hidden" disabled={isLoading}>
-                                {isLoading ? (
+                            <Button type="submit" variant="gradient" className="relative flex-1 overflow-hidden" disabled={isPending}>
+                                {isPending ? (
                                     <div className="flex items-center">
                                         <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
                                         Creating...

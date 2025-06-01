@@ -1,9 +1,9 @@
 import { client } from "@/lib/rpc";
 import { useMutation } from "@tanstack/react-query";
-import { InferResponseType } from "hono";
+import { InferRequestType, InferResponseType } from "hono";
 
 type ResponseType = InferResponseType<typeof client.api.auth.signup['$post']>;
-type RequestType = InferResponseType<typeof client.api.auth.signup['$post']>;
+type RequestType = InferRequestType<typeof client.api.auth.signup['$post']>['json'];
 
 export const useSignUp = () => {
     return useMutation<ResponseType, Error, RequestType>({
@@ -13,7 +13,6 @@ export const useSignUp = () => {
         },
         onError: (error) => {
             console.error("Sign up failed:", error);
-            throw error; // Re-throw the error to be handled by the component
         },
     }); 
 };
