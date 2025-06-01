@@ -1,37 +1,18 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, Lock, Mail, Sparkles, User } from 'lucide-react';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const signUpSchema = z
-    .object({
-        fullName: z.string().min(2, {
-            message: 'Full name must be at least 2 characters.',
-        }),
-        email: z.string().email({
-            message: 'Please enter a valid email address.',
-        }),
-        password: z
-            .string()
-            .min(8, {
-                message: 'Password must be at least 8 characters.',
-            })
-            .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
-                message: 'Password must contain at least one uppercase letter, one lowercase letter, and one number.',
-            }),
-        confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords don't match",
-        path: ['confirmPassword'],
-    });
+import { Eye, EyeOff, Lock, Mail, Sparkles, User } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useSignUp } from '../hooks/use-sign-up';
+import { signUpSchema } from '../validator-schemas';
 
 interface SignUpDialogProps {
     open: boolean;
@@ -40,6 +21,8 @@ interface SignUpDialogProps {
 }
 
 export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSignInClick }) => {
+    const { mutate } = useSignUp();
+
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -56,9 +39,9 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSign
 
     async function onSubmit(values: z.infer<typeof signUpSchema>) {
         setIsLoading(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log(values);
+
+        mutate(values);
+
         setIsLoading(false);
         onOpenChange(false);
         form.reset();
