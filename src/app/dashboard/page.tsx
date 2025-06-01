@@ -50,7 +50,7 @@ export default function DashboardPage() {
       {/* Dashboard Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {/* Password Manager Section */}
-        <Card className="bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200/50 dark:border-blue-800/50 animate-in fade-in-50 slide-in-from-left-5 duration-500">
+        <Card className="h-full flex flex-col bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200/50 dark:border-blue-800/50 animate-in fade-in-50 slide-in-from-left-5 duration-500">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <div className="rounded-full bg-blue-500 p-2 animate-pulse">
@@ -60,7 +60,7 @@ export default function DashboardPage() {
             </div>
             <CardDescription>Secure password management</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="flex-1 flex flex-col space-y-4">
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
@@ -111,6 +111,19 @@ export default function DashboardPage() {
               </div>
             </div>
 
+            {/* Password Alerts */}
+            <div className="rounded-lg bg-orange-50/50 dark:bg-orange-950/10 p-3 border border-orange-200/50 dark:border-orange-800/50">
+              <div className="flex items-center gap-2 mb-1">
+                <AlertTriangle className="h-4 w-4 text-orange-600" />
+                <span className="text-sm font-medium text-orange-800 dark:text-orange-200">
+                  Security Alert
+                </span>
+              </div>
+              <p className="text-xs text-orange-700 dark:text-orange-300">
+                3 passwords expire in the next 30 days
+              </p>
+            </div>
+
             {/* Quick Actions */}
             <div className="space-y-2">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -134,7 +147,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Savings Tracker Section */}
-        <Card className="bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200/50 dark:border-emerald-800/50 animate-in fade-in-50 slide-in-from-bottom-5 duration-500 delay-150">
+        <Card className="h-full flex flex-col bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200/50 dark:border-emerald-800/50 animate-in fade-in-50 slide-in-from-bottom-5 duration-500 delay-150">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <div className="rounded-full bg-emerald-500 p-2">
@@ -144,55 +157,57 @@ export default function DashboardPage() {
             </div>
             <CardDescription>Financial portfolio overview</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Quick Stats */}
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">
-                  Total Savings
-                </span>
-                <div className="text-right">
-                  <div className="font-bold text-emerald-600">$12,450</div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 609,975
+          <CardContent className="flex-1 flex flex-col space-y-4">
+            <div className="flex-1 space-y-4">
+              {/* Quick Stats */}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    Total Savings
+                  </span>
+                  <div className="text-right">
+                    <div className="font-bold text-emerald-600">$12,450</div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 609,975
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    Monthly Income
+                  </span>
+                  <div className="text-right">
+                    <div className="font-semibold text-green-600">$3,200</div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 157,120
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">
+                    Monthly Expenses
+                  </span>
+                  <div className="text-right">
+                    <div className="font-semibold text-red-600">$1,850</div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 90,827
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">
-                  Monthly Income
-                </span>
-                <div className="text-right">
-                  <div className="font-semibold text-green-600">$3,200</div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 157,120
-                  </div>
+              {/* Auto-expenses Progress */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Auto-expenses vs Income</span>
+                  <span className="font-medium">58%</span>
                 </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">
-                  Monthly Expenses
-                </span>
-                <div className="text-right">
-                  <div className="font-semibold text-red-600">$1,850</div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 90,827
-                  </div>
+                <Progress value={58} className="h-2" />
+                <div className="text-xs text-muted-foreground">
+                  Good control over automatic expenses
                 </div>
-              </div>
-            </div>
-
-            {/* Auto-expenses Progress */}
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Auto-expenses vs Income</span>
-                <span className="font-medium">58%</span>
-              </div>
-              <Progress value={58} className="h-2" />
-              <div className="text-xs text-muted-foreground">
-                Good control over automatic expenses
               </div>
             </div>
 
@@ -210,7 +225,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* High Priority Goals Section */}
-        <Card className="lg:col-span-2 xl:col-span-1 bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-violet-950/20 dark:to-purple-950/20 border-violet-200/50 dark:border-violet-800/50 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-300">
+        <Card className="lg:col-span-2 xl:col-span-1 h-full flex flex-col bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-violet-950/20 dark:to-purple-950/20 border-violet-200/50 dark:border-violet-800/50 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-300">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-2">
               <div className="rounded-full bg-violet-500 p-2">
@@ -220,86 +235,88 @@ export default function DashboardPage() {
             </div>
             <CardDescription>High priority financial goals</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Goal 1 - Emergency Fund */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="font-medium">Emergency Fund</div>
-                  <div className="text-sm text-muted-foreground">
-                    $10,000 target
+          <CardContent className="flex-1 flex flex-col space-y-4">
+            <div className="flex-1 space-y-4">
+              {/* Goal 1 - Emergency Fund */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-medium">Emergency Fund</div>
+                    <div className="text-sm text-muted-foreground">
+                      $10,000 target
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 490,500 target
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 490,500 target
-                  </div>
+                  <Badge
+                    variant="outline"
+                    className="text-amber-600 border-amber-200"
+                  >
+                    Needs Margin
+                  </Badge>
                 </div>
-                <Badge
-                  variant="outline"
-                  className="text-amber-600 border-amber-200"
-                >
-                  Needs Margin
-                </Badge>
+                <Progress value={100} className="h-2" />
+                <div className="text-xs text-muted-foreground">
+                  $10,000 / $10,000 (EGP 490,500)
+                </div>
               </div>
-              <Progress value={100} className="h-2" />
-              <div className="text-xs text-muted-foreground">
-                $10,000 / $10,000 (EGP 490,500)
-              </div>
-            </div>
 
-            {/* Goal 2 - House Down Payment */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="font-medium">House Down Payment</div>
-                  <div className="text-sm text-muted-foreground">
-                    $50,000 target
+              {/* Goal 2 - House Down Payment */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-medium">House Down Payment</div>
+                    <div className="text-sm text-muted-foreground">
+                      $50,000 target
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 2,452,500 target
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 2,452,500 target
-                  </div>
+                  <Badge
+                    variant="outline"
+                    className="text-blue-600 border-blue-200"
+                  >
+                    25%
+                  </Badge>
                 </div>
-                <Badge
-                  variant="outline"
-                  className="text-blue-600 border-blue-200"
-                >
-                  25%
-                </Badge>
+                <Progress value={25} className="h-2" />
+                <div className="text-xs text-muted-foreground">
+                  $12,500 / $50,000 (EGP 613,125)
+                </div>
               </div>
-              <Progress value={25} className="h-2" />
-              <div className="text-xs text-muted-foreground">
-                $12,500 / $50,000 (EGP 613,125)
-              </div>
-            </div>
 
-            {/* Goal 3 - Vacation 2025 */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="font-medium">Vacation 2025</div>
-                  <div className="text-sm text-muted-foreground">
-                    $5,000 target
+              {/* Goal 3 - Vacation 2025 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="font-medium">Vacation 2025</div>
+                    <div className="text-sm text-muted-foreground">
+                      $5,000 target
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      EGP 245,250 target
+                    </div>
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    EGP 245,250 target
-                  </div>
+                  <Badge
+                    variant="outline"
+                    className="text-orange-600 border-orange-200"
+                  >
+                    60%
+                  </Badge>
                 </div>
-                <Badge
-                  variant="outline"
-                  className="text-orange-600 border-orange-200"
-                >
-                  60%
-                </Badge>
-              </div>
-              <Progress value={60} className="h-2" />
-              <div className="text-xs text-muted-foreground">
-                $3,000 / $5,000 (EGP 147,150)
+                <Progress value={60} className="h-2" />
+                <div className="text-xs text-muted-foreground">
+                  $3,000 / $5,000 (EGP 147,150)
+                </div>
               </div>
             </div>
 
             {/* Action */}
             <Button
               variant="gradient-outline"
-              className="w-full mt-4 transition-all hover:scale-105"
+              className="w-full transition-all hover:scale-105"
             >
               <Target className="h-4 w-4 mr-2" />
               View All Goals
