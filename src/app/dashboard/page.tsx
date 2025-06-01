@@ -60,7 +60,7 @@ export default function DashboardPage() {
             </div>
             <CardDescription>Secure password management</CardDescription>
           </CardHeader>
-          <CardContent className="flex-1 flex flex-col space-y-4">
+          <CardContent className="flex-1 flex flex-col justify-between space-y-4">
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center">
@@ -345,9 +345,9 @@ export default function DashboardPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Security Score */}
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/10 animate-in fade-in-50 slide-in-from-left-3 duration-300 delay-100 hover:scale-105 transition-transform">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/10 animate-in fade-in-50 slide-in-from-left-3 duration-100 delay-100 hover:scale-105 transition-transform">
               <div className="rounded-full bg-blue-500 p-2">
                 <Shield className="h-4 w-4 text-white" />
               </div>
@@ -361,7 +361,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Savings Rate */}
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/10 animate-in fade-in-50 slide-in-from-bottom-3 duration-300 delay-200 hover:scale-105 transition-transform">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/10 animate-in fade-in-50 slide-in-from-bottom-3 duration-100 delay-200 hover:scale-105 transition-transform">
               <div className="rounded-full bg-emerald-500 p-2">
                 <TrendingUp className="h-4 w-4 text-white" />
               </div>
@@ -375,7 +375,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Monthly Budget */}
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-violet-50/50 dark:bg-violet-950/10 animate-in fade-in-50 slide-in-from-right-3 duration-300 delay-300 hover:scale-105 transition-transform">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-violet-50/50 dark:bg-violet-950/10 animate-in fade-in-50 slide-in-from-right-3 duration-100 delay-300 hover:scale-105 transition-transform">
               <div className="rounded-full bg-violet-500 p-2">
                 <Wallet className="h-4 w-4 text-white" />
               </div>
