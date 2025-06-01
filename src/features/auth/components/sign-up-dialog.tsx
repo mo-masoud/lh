@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,11 +34,12 @@ const signUpSchema = z
     });
 
 interface SignUpDialogProps {
-    children?: React.ReactNode;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    onSignInClick: () => void;
 }
 
-export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
-    const [open, setOpen] = useState(false);
+export const SignUpDialog: FC<SignUpDialogProps> = ({ open, onOpenChange, onSignInClick }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -59,19 +60,17 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         console.log(values);
         setIsLoading(false);
-        setOpen(false);
+        onOpenChange(false);
         form.reset();
     }
 
+    const handleClose = () => {
+        form.reset();
+        onOpenChange(false);
+    };
+
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                {children || (
-                    <Button variant="gradient" className="group relative overflow-hidden">
-                        Sign Up
-                    </Button>
-                )}
-            </DialogTrigger>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="space-y-3">
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-cyan-500">
@@ -98,6 +97,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                                             <User className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 placeholder="Enter your full name"
+                                                autoComplete="off"
                                                 className="pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
                                             />
@@ -119,6 +119,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                                             <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 type="email"
+                                                autoComplete="off"
                                                 placeholder="Enter your email"
                                                 className="pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
@@ -141,6 +142,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                                             <Lock className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 type={showPassword ? 'text' : 'password'}
+                                                autoComplete="off"
                                                 placeholder="Create a password"
                                                 className="pr-10 pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
@@ -179,6 +181,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                                             <Lock className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 type={showConfirmPassword ? 'text' : 'password'}
+                                                autoComplete="off"
                                                 placeholder="Confirm your password"
                                                 className="pr-10 pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
@@ -204,7 +207,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                         />
 
                         <div className="flex gap-3 pt-4">
-                            <Button type="button" variant="outline" className="flex-1" onClick={() => setOpen(false)} disabled={isLoading}>
+                            <Button type="button" variant="outline" className="flex-1" onClick={handleClose} disabled={isLoading}>
                                 Cancel
                             </Button>
                             <Button type="submit" variant="gradient" className="relative flex-1 overflow-hidden" disabled={isLoading}>
@@ -227,7 +230,7 @@ export const SignUpDialog: FC<SignUpDialogProps> = ({ children }) => {
                 <div className="mt-6 text-center">
                     <p className="text-muted-foreground text-sm">
                         Already have an account?{' '}
-                        <Button variant="link" className="h-auto p-0 font-medium text-violet-600 hover:text-violet-700">
+                        <Button variant="link" className="h-auto p-0 font-medium text-violet-600 hover:text-violet-700" onClick={onSignInClick}>
                             Sign in
                         </Button>
                     </p>

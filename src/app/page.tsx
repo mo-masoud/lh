@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
+import { GetEarlyAccessButton } from '@/features/auth/components/get-early-access-button';
 import { HeaderAuthButtons } from '@/features/auth/components/header-auth-buttons';
-import { SignUpDialog } from '@/features/auth/components/sign-up-dialog';
 import { ArrowRight, Heart, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
@@ -45,12 +45,10 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                            <SignUpDialog>
-                                <Button size="lg" variant="gradient" className="group">
-                                    Get Early Access
-                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                </Button>
-                            </SignUpDialog>
+                            <GetEarlyAccessButton>
+                                Get Early Access
+                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </GetEarlyAccessButton>
                             <Button variant="gradient-outline" size="lg">
                                 Learn More
                             </Button>

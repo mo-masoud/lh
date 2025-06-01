@@ -1,12 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff, Lock, LogIn, Mail, Shield } from 'lucide-react';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -19,8 +19,14 @@ const signInSchema = z.object({
     }),
 });
 
-export const SignInDialog = () => {
-    const [open, setOpen] = useState(false);
+interface SignInDialogProps {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+    onSignUpClick: () => void;
+    onForgotPasswordClick: () => void;
+}
+
+export const SignInDialog: FC<SignInDialogProps> = ({ open, onOpenChange, onSignUpClick, onForgotPasswordClick }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -38,17 +44,17 @@ export const SignInDialog = () => {
         await new Promise((resolve) => setTimeout(resolve, 1500));
         console.log(values);
         setIsLoading(false);
-        setOpen(false);
+        onOpenChange(false);
         form.reset();
     }
 
+    const handleClose = () => {
+        form.reset();
+        onOpenChange(false);
+    };
+
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button variant="gradient-outline" className="group relative overflow-hidden">
-                    Sign In
-                </Button>
-            </DialogTrigger>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="space-y-3">
                     <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-violet-500 to-cyan-500">
@@ -75,6 +81,7 @@ export const SignInDialog = () => {
                                             <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                                             <Input
                                                 type="email"
+                                                autoComplete='off'
                                                 placeholder="Enter your email"
                                                 className="pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
@@ -98,6 +105,7 @@ export const SignInDialog = () => {
                                             <Input
                                                 type={showPassword ? 'text' : 'password'}
                                                 placeholder="Enter your password"
+                                                autoComplete='off'
                                                 className="pr-10 pl-10 transition-all focus:ring-2 focus:ring-violet-500/20"
                                                 {...field}
                                             />
@@ -122,13 +130,18 @@ export const SignInDialog = () => {
                         />
 
                         <div className="flex justify-end">
-                            <Button type="button" variant="link" className="h-auto p-0 text-sm text-violet-600 hover:text-violet-700">
+                            <Button
+                                type="button"
+                                variant="link"
+                                className="h-auto p-0 text-sm text-violet-600 hover:text-violet-700"
+                                onClick={onForgotPasswordClick}
+                            >
                                 Forgot password?
                             </Button>
                         </div>
 
                         <div className="flex gap-3 pt-4">
-                            <Button type="button" variant="outline" className="flex-1" onClick={() => setOpen(false)} disabled={isLoading}>
+                            <Button type="button" variant="outline" className="flex-1" onClick={handleClose} disabled={isLoading}>
                                 Cancel
                             </Button>
                             <Button type="submit" variant="gradient" className="relative flex-1 overflow-hidden" disabled={isLoading}>
@@ -151,7 +164,7 @@ export const SignInDialog = () => {
                 <div className="mt-6 text-center">
                     <p className="text-muted-foreground text-sm">
                         Don't have an account?{' '}
-                        <Button variant="link" className="h-auto p-0 font-medium text-violet-600 hover:text-violet-700">
+                        <Button variant="link" className="h-auto p-0 font-medium text-violet-600 hover:text-violet-700" onClick={onSignUpClick}>
                             Sign up
                         </Button>
                     </p>
