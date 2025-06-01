@@ -304,3 +304,62 @@
     oklch(0.6 0.3 200 / 0.6)
   );
 }
+
+/* Custom Sidebar Gradient Styling */
+.sidebar-gradient [data-sidebar="sidebar"],
+.sidebar-gradient [data-slot="sidebar-inner"] {
+  background: linear-gradient(
+    to bottom,
+    rgb(245 243 255 / 0.9),
+    rgb(248 250 252 / 0.95),
+    rgb(236 254 255 / 0.9)
+  ) !important;
+  border-right: 1px solid rgb(139 92 246 / 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.dark .sidebar-gradient [data-sidebar="sidebar"],
+.dark .sidebar-gradient [data-slot="sidebar-inner"] {
+  background: linear-gradient(
+    to bottom,
+    rgb(30 27 75 / 0.8),
+    rgb(15 23 42 / 0.95),
+    rgb(22 78 99 / 0.8)
+  ) !important;
+  border-right: 1px solid rgb(139 92 246 / 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Override any default sidebar background classes */
+.sidebar-gradient [data-sidebar="sidebar"].bg-sidebar,
+.sidebar-gradient [data-slot="sidebar-inner"].bg-sidebar {
+  background: linear-gradient(
+    to bottom,
+    rgb(245 243 255 / 0.9),
+    rgb(248 250 252 / 0.95),
+    rgb(236 254 255 / 0.9)
+  ) !important;
+}
+
+.dark .sidebar-gradient [data-sidebar="sidebar"].bg-sidebar,
+.dark .sidebar-gradient [data-slot="sidebar-inner"].bg-sidebar {
+  background: linear-gradient(
+    to bottom,
+    rgb(30 27 75 / 0.8),
+    rgb(15 23 42 / 0.95),
+    rgb(22 78 99 / 0.8)
+  ) !important;
+}
+
+/* Ensure sidebar content maintains proper styling */
+.sidebar-gradient .sidebar-content,
+.sidebar-gradient[data-sidebar="sidebar"] .sidebar-content {
+  background: transparent !important;
+}
+
+.sidebar-gradient .sidebar-header,
+.sidebar-gradient .sidebar-footer,
+.sidebar-gradient[data-sidebar="sidebar"] .sidebar-header,
+.sidebar-gradient[data-sidebar="sidebar"] .sidebar-footer {
+  background: transparent !important;
+}
