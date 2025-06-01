@@ -1,9 +1,9 @@
-import { WelcomeHeader } from '@/components/features/dashboard';
 import { NavigationBreadcrumb } from '@/components/shared/navigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { WelcomeHeader } from '@/features/dashboard/components';
 import { AlertTriangle, ArrowUpRight, Copy, DollarSign, Eye, Home, Plus, Shield, Target, TrendingUp, Wallet } from 'lucide-react';
 import { Metadata } from 'next';
 
