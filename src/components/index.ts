@@ -8,4 +8,4 @@ export * from "./layout";
 export * from "./shared";
 
 // Feature-Specific Components
-export * from "./feature-specific";
+export * from "./features";

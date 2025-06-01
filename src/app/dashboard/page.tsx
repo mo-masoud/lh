@@ -1,5 +1,5 @@
 import { NavigationBreadcrumb } from "@/components/shared/navigation";
-import { WelcomeHeader } from "@/components/feature-specific/dashboard";
+import { WelcomeHeader } from "@/components/features/dashboard";
 import {
   Shield,
   Eye,
