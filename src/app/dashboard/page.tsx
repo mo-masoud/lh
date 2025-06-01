@@ -1,20 +1,28 @@
-import { StatsCard } from "@/components/shared/cards";
 import { NavigationBreadcrumb } from "@/components/shared/navigation";
 import { WelcomeHeader } from "@/components/feature-specific/dashboard";
 import {
   Shield,
-  Lock,
-  TrendingUp,
+  Eye,
+  Plus,
   Wallet,
-  BarChart3,
-  ArrowUpRight,
+  TrendingUp,
+  Target,
   Home,
+  Copy,
+  DollarSign,
+  ArrowUpRight,
   AlertTriangle,
-  Calendar,
-  CreditCard,
-  TrendingDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -39,218 +47,330 @@ export default function DashboardPage() {
       {/* Welcome Header */}
       <WelcomeHeader username="Masoud" />
 
-      {/* Critical Alerts - Actionable & Time-Sensitive */}
-      <section className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Monthly Recurring Transaction Alert - Critical with 5-day deadline */}
-          <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 p-4 animate-in slide-in-from-left-4 duration-300 delay-100">
-            <div className="flex items-start gap-3">
-              <div className="rounded-full bg-amber-500 p-2">
-                <Calendar className="h-4 w-4 text-white" />
+      {/* Dashboard Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {/* Password Manager Section */}
+        <Card className="bg-gradient-to-br from-blue-50/50 to-cyan-50/50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200/50 dark:border-blue-800/50 animate-in fade-in-50 slide-in-from-left-5 duration-500">
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <div className="rounded-full bg-blue-500 p-2 animate-pulse">
+                <Shield className="h-4 w-4 text-white" />
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-amber-900 dark:text-amber-100">
-                  Monthly Salary Due
-                </p>
-                <p className="text-sm text-amber-700 dark:text-amber-200 mt-1">
-                  Your salary transaction is ready to be logged (3 days
-                  remaining)
-                </p>
-                <div className="flex gap-2 mt-3">
-                  <Button
-                    size="sm"
-                    className="h-7 bg-amber-600 hover:bg-amber-700 text-white"
-                  >
-                    Save
-                  </Button>
-                  <Button size="sm" variant="outline" className="h-7">
-                    Edit & Save
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="h-7 text-amber-700"
-                  >
-                    Dismiss
-                  </Button>
+              <CardTitle className="text-lg">Passwords</CardTitle>
+            </div>
+            <CardDescription>Secure password management</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">24</div>
+                <div className="text-sm text-muted-foreground">Total</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-orange-600 animate-bounce">
+                  3
+                </div>
+                <div className="text-sm text-muted-foreground">Expiring</div>
+              </div>
+            </div>
+
+            {/* Last 3 Copied Passwords */}
+            <div className="space-y-2">
+              <div className="text-sm font-medium text-muted-foreground">
+                Recently copied:
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center justify-between p-2 rounded-lg bg-blue-50/50 dark:bg-blue-950/10 hover:bg-blue-100/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <Copy className="h-3 w-3 text-blue-600" />
+                    <span className="text-sm font-medium">GitHub</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    2 hours ago
+                  </span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-lg bg-blue-50/30 dark:bg-blue-950/5 hover:bg-blue-100/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <Copy className="h-3 w-3 text-blue-600" />
+                    <span className="text-sm font-medium">AWS Console</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    1 day ago
+                  </span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-lg bg-blue-50/30 dark:bg-blue-950/5 hover:bg-blue-100/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2">
+                    <Copy className="h-3 w-3 text-blue-600" />
+                    <span className="text-sm font-medium">Gmail</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    3 days ago
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Password Expiry Alert - Critical security action needed */}
-          <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-950/20 dark:to-rose-950/20 p-4 animate-in slide-in-from-right-4 duration-300 delay-150">
-            <div className="flex items-start gap-3">
-              <div className="rounded-full bg-red-500 p-2">
-                <AlertTriangle className="h-4 w-4 text-white" />
+            {/* Quick Actions */}
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Button
+                  variant="gradient"
+                  className="transition-all hover:scale-105"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add New Password
+                </Button>
+                <Button
+                  variant="gradient-outline"
+                  className="transition-all hover:scale-105"
+                >
+                  <Eye className="h-4 w-4 mr-2" />
+                  View All Passwords
+                </Button>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-red-900 dark:text-red-100">
-                  3 Passwords Expiring Soon
-                </p>
-                <p className="text-sm text-red-700 dark:text-red-200 mt-1">
-                  AWS (2 days), GitHub (5 days), Gmail (1 week)
-                </p>
-                <div className="flex gap-2 mt-3">
-                  <Button
-                    size="sm"
-                    className="h-7 bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    Update Now
-                  </Button>
-                  <Button size="sm" variant="outline" className="h-7">
-                    View All
-                  </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Savings Tracker Section */}
+        <Card className="bg-gradient-to-br from-emerald-50/50 to-green-50/50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200/50 dark:border-emerald-800/50 animate-in fade-in-50 slide-in-from-bottom-5 duration-500 delay-150">
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <div className="rounded-full bg-emerald-500 p-2">
+                <Wallet className="h-4 w-4 text-white" />
+              </div>
+              <CardTitle className="text-lg">Savings</CardTitle>
+            </div>
+            <CardDescription>Financial portfolio overview</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Quick Stats */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">
+                  Total Savings
+                </span>
+                <div className="text-right">
+                  <div className="font-bold text-emerald-600">$12,450</div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 609,975
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">
+                  Monthly Income
+                </span>
+                <div className="text-right">
+                  <div className="font-semibold text-green-600">$3,200</div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 157,120
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">
+                  Monthly Expenses
+                </span>
+                <div className="text-right">
+                  <div className="font-semibold text-red-600">$1,850</div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 90,827
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Auto-expenses Progress */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Auto-expenses vs Income</span>
+                <span className="font-medium">58%</span>
+              </div>
+              <Progress value={58} className="h-2" />
+              <div className="text-xs text-muted-foreground">
+                Good control over automatic expenses
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="space-y-2">
+              <Button
+                variant="gradient"
+                className="w-full transition-all hover:scale-105"
+              >
+                <DollarSign className="h-4 w-4 mr-2" />
+                Add Transaction
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* High Priority Goals Section */}
+        <Card className="lg:col-span-2 xl:col-span-1 bg-gradient-to-br from-violet-50/50 to-purple-50/50 dark:from-violet-950/20 dark:to-purple-950/20 border-violet-200/50 dark:border-violet-800/50 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-300">
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-2">
+              <div className="rounded-full bg-violet-500 p-2">
+                <Target className="h-4 w-4 text-white" />
+              </div>
+              <CardTitle className="text-lg">Top Savings Goals</CardTitle>
+            </div>
+            <CardDescription>High priority financial goals</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Goal 1 - Emergency Fund */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="font-medium">Emergency Fund</div>
+                  <div className="text-sm text-muted-foreground">
+                    $10,000 target
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 490,500 target
+                  </div>
+                </div>
+                <Badge
+                  variant="outline"
+                  className="text-amber-600 border-amber-200"
+                >
+                  Needs Margin
+                </Badge>
+              </div>
+              <Progress value={100} className="h-2" />
+              <div className="text-xs text-muted-foreground">
+                $10,000 / $10,000 (EGP 490,500)
+              </div>
+            </div>
+
+            {/* Goal 2 - House Down Payment */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="font-medium">House Down Payment</div>
+                  <div className="text-sm text-muted-foreground">
+                    $50,000 target
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 2,452,500 target
+                  </div>
+                </div>
+                <Badge
+                  variant="outline"
+                  className="text-blue-600 border-blue-200"
+                >
+                  25%
+                </Badge>
+              </div>
+              <Progress value={25} className="h-2" />
+              <div className="text-xs text-muted-foreground">
+                $12,500 / $50,000 (EGP 613,125)
+              </div>
+            </div>
+
+            {/* Goal 3 - Vacation 2025 */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="font-medium">Vacation 2025</div>
+                  <div className="text-sm text-muted-foreground">
+                    $5,000 target
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    EGP 245,250 target
+                  </div>
+                </div>
+                <Badge
+                  variant="outline"
+                  className="text-orange-600 border-orange-200"
+                >
+                  60%
+                </Badge>
+              </div>
+              <Progress value={60} className="h-2" />
+              <div className="text-xs text-muted-foreground">
+                $3,000 / $5,000 (EGP 147,150)
+              </div>
+            </div>
+
+            {/* Action */}
+            <Button
+              variant="gradient-outline"
+              className="w-full mt-4 transition-all hover:scale-105"
+            >
+              <Target className="h-4 w-4 mr-2" />
+              View All Goals
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Recent Activity Insights */}
+      <Card className="animate-in fade-in-50 slide-in-from-bottom-5 duration-500 delay-500">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>Quick Insights</CardTitle>
+              <CardDescription>
+                Recent activity and security status
+              </CardDescription>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="transition-all hover:scale-105"
+            >
+              View Reports <ArrowUpRight className="h-4 w-4 ml-1" />
+            </Button>
           </div>
-        </div>
-      </section>
-
-      {/* Comprehensive Stats Overview */}
-      <section className="space-y-6">
-        <div className="animate-in fade-in-0 slide-in-from-left-4 duration-300 delay-250">
-          <h2 className="text-lg font-semibold text-muted-foreground mb-4">
-            Overview
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Password Manager Stats */}
-          <StatsCard
-            title="Total Passwords"
-            value="24"
-            change="+3"
-            changeType="positive"
-            icon={<Lock className="h-5 w-5" />}
-            className="animate-in slide-in-from-left-4 duration-300 delay-300 hover:scale-105 transition-transform"
-          />
-          <StatsCard
-            title="Expiring Soon"
-            value="3"
-            change="+1"
-            changeType="negative"
-            icon={<AlertTriangle className="h-5 w-5" />}
-            className="animate-in slide-in-from-left-4 duration-300 delay-325 hover:scale-105 transition-transform"
-          />
-
-          {/* Savings Tracker Stats */}
-          <StatsCard
-            title="Total Portfolio"
-            value="$12,450"
-            change="+$850"
-            changeType="positive"
-            icon={<Wallet className="h-5 w-5" />}
-            className="animate-in slide-in-from-bottom-4 duration-300 delay-350 hover:scale-105 transition-transform"
-          />
-          <StatsCard
-            title="Monthly Progress"
-            value="78%"
-            change="+12%"
-            changeType="positive"
-            icon={<TrendingUp className="h-5 w-5" />}
-            className="animate-in slide-in-from-right-4 duration-300 delay-375 hover:scale-105 transition-transform"
-          />
-        </div>
-
-        {/* Additional Financial Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <StatsCard
-            title="Active Accounts"
-            value="5"
-            change="0"
-            changeType="neutral"
-            icon={<CreditCard className="h-5 w-5" />}
-            className="animate-in slide-in-from-left-4 duration-300 delay-400 hover:scale-105 transition-transform"
-          />
-          <StatsCard
-            title="This Month Income"
-            value="$3,200"
-            change="+$200"
-            changeType="positive"
-            icon={<TrendingUp className="h-5 w-5" />}
-            className="animate-in slide-in-from-bottom-4 duration-300 delay-425 hover:scale-105 transition-transform"
-          />
-          <StatsCard
-            title="This Month Expenses"
-            value="$1,850"
-            change="-$150"
-            changeType="positive"
-            icon={<TrendingDown className="h-5 w-5" />}
-            className="animate-in slide-in-from-right-4 duration-300 delay-450 hover:scale-105 transition-transform"
-          />
-        </div>
-      </section>
-
-      {/* Enhanced Recent Activity & Insights */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-between animate-in fade-in-0 slide-in-from-left-4 duration-300 delay-675">
-          <div>
-            <h3 className="text-xl font-semibold">Insights & Trends</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              Key insights and trends from your data
-            </p>
-          </div>
-          <Button variant="ghost" className="text-sm">
-            View Reports <ArrowUpRight className="h-4 w-4 ml-1" />
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Security Insight */}
-          <div className="rounded-xl border bg-card p-6 space-y-4 animate-in slide-in-from-bottom-4 duration-300 delay-700 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-2">
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Security Score */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/10 animate-in fade-in-50 slide-in-from-left-3 duration-300 delay-100 hover:scale-105 transition-transform">
+              <div className="rounded-full bg-blue-500 p-2">
                 <Shield className="h-4 w-4 text-white" />
               </div>
               <div className="flex-1">
-                <p className="font-medium">Security Score</p>
-                <p className="text-sm text-muted-foreground">
-                  85% - Strong password practices
-                </p>
+                <div className="font-medium">Security Score</div>
+                <div className="text-sm text-muted-foreground">
+                  Strong practices
+                </div>
               </div>
-              <div className="text-2xl font-bold text-blue-600">85%</div>
+              <div className="text-xl font-bold text-blue-600">85%</div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full w-[85%]"></div>
-            </div>
-          </div>
 
-          {/* Savings Trend */}
-          <div className="rounded-xl border bg-card p-6 space-y-4 animate-in slide-in-from-bottom-4 duration-300 delay-725 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-gradient-to-r from-green-500 to-emerald-500 p-2">
+            {/* Savings Rate */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/10 animate-in fade-in-50 slide-in-from-bottom-3 duration-300 delay-200 hover:scale-105 transition-transform">
+              <div className="rounded-full bg-emerald-500 p-2">
                 <TrendingUp className="h-4 w-4 text-white" />
               </div>
               <div className="flex-1">
-                <p className="font-medium">Monthly Savings Rate</p>
-                <p className="text-sm text-muted-foreground">
-                  42% increase vs last month
-                </p>
+                <div className="font-medium">Savings Rate</div>
+                <div className="text-sm text-muted-foreground">
+                  42% increase
+                </div>
               </div>
-              <div className="text-2xl font-bold text-green-600">+42%</div>
+              <div className="text-xl font-bold text-emerald-600">+42%</div>
             </div>
-          </div>
 
-          {/* Auto-expense Warning */}
-          <div className="rounded-xl border bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 p-6 space-y-4 animate-in slide-in-from-bottom-4 duration-300 delay-750 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 p-2">
-                <AlertTriangle className="h-4 w-4 text-white" />
+            {/* Monthly Budget */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-violet-50/50 dark:bg-violet-950/10 animate-in fade-in-50 slide-in-from-right-3 duration-300 delay-300 hover:scale-105 transition-transform">
+              <div className="rounded-full bg-violet-500 p-2">
+                <Wallet className="h-4 w-4 text-white" />
               </div>
               <div className="flex-1">
-                <p className="font-medium">Expense Alert</p>
-                <p className="text-sm text-muted-foreground">
-                  Auto-expenses: 78% of income
-                </p>
+                <div className="font-medium">Budget Status</div>
+                <div className="text-sm text-muted-foreground">On track</div>
               </div>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full w-[78%]"></div>
+              <div className="text-xl font-bold text-violet-600">78%</div>
             </div>
           </div>
-        </div>
-      </section>
+        </CardContent>
+      </Card>
     </div>
   );
 }
